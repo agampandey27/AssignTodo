@@ -45,12 +45,12 @@ export const loginUser = async (req, res) => {
   try {
     let user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ msg: 'Invalid credentials' });
+      return res.status(400).json({ msg: 'Invalid email' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ msg: 'Invalid credentials' });
+      return res.status(400).json({ msg: 'Invalid password' });
     }
 
     const payload = {
@@ -73,3 +73,4 @@ export const loginUser = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+

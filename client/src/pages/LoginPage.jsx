@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const LoginPage = ({ setToken, navigate }) => {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -9,14 +11,15 @@ const LoginPage = ({ setToken, navigate }) => {
   const handleSignUpSuccess = async (token) => {
     setToken(token);
     localStorage.setItem('token', token);
-    navigate('/'); // Navigate to home or another page on successful sign-up
+    navigate('/'); 
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          {showSignUp ? 'Sign Up' : 'Login'}
+    <>
+    <div className="flex flex-col items-center justify-center h-screen bg-[#fdc57b]">
+      <div className="w-full max-w-md p-8 bg-[#fdf2d5] rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold text-center text-[gray-800] mb-6">
+          {showSignUp ? 'Sign Up' : 'Welcome To TODO App!'}
         </h2>
         {showSignUp ? (
           <>
@@ -46,7 +49,9 @@ const LoginPage = ({ setToken, navigate }) => {
           </>
         )}
       </div>
+      <Footer />
     </div>
+    </>
   );
 };
 
