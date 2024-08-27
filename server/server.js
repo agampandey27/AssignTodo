@@ -3,6 +3,8 @@ import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
 import todoRoutes from './routes/todos.js';
 import * as dotenv from 'dotenv';
+import cors from 'cors';
+
 dotenv.config();
 
 // Connect to the database
@@ -11,6 +13,7 @@ connectDB();
 const app = express();
 
 // Init Middleware
+app.use(cors());
 app.use(express.json());
 
 // Define Routes

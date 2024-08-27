@@ -1,48 +1,41 @@
+import User from '../models/User.js'; // Ensure to add `.js` extension
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js'; // Ensure to add `.js` extension
 
 export const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
-
+  
   try {
-    // Check if the user already exists
+    // Check if the email is already in use
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ msg: 'User already exists' });
+      return res.status(400).json({ msg: 'Email address is already in use.' });
     }
 
-    // Create a new user instance
+    // Check if the username is already taken
+    user = await User.findOne({ username });
+    if (user) {
+      return res.status(400).json({ msg: 'Username is already taken.' });
+    }
+
+    // Create a new user
     user = new User({
       username,
       email,
-      password,
+      password: await bcrypt.hash(password, 10), // Hash password
     });
 
-    // Hash the password
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(password, salt);
-
-    // Save the user to the database
     await user.save();
 
-    // Create a JWT payload
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    // Sign the JWT token and send it in the response
-    jwt.sign(
-      payload,
+    // Generate a JWT token (optional)
+    const token = jwt.sign(
+      { id: user.id },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }, // Token expiration time
-      (err, token) => {
-        if (err) throw err;
-        res.json({ token });
-      }
+      { expiresIn: '1h' }
     );
+
+    res.json({ token });
+
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
