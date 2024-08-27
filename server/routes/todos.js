@@ -1,6 +1,6 @@
 import express from 'express';
-import auth from '../middleware/auth.js'; // Ensure to add `.js` extension
-import { getTodos, addTodo, updateTodo, deleteTodo } from '../controllers/todoController.js'; // Ensure to add `.js` extension
+import auth from '../middleware/auth.js';
+import { getTodos, addTodo, updateTodo, deleteTodo } from '../controllers/todoController.js'; 
 
 const router = express.Router();
 

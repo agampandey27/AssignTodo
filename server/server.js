@@ -7,16 +7,13 @@ import cors from 'cors';
 
 dotenv.config();
 
-// Connect to the database
 connectDB();
 
 const app = express();
 
-// Init Middleware
 app.use(cors());
 app.use(express.json());
 
-// Define Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/todos', todoRoutes);
 
