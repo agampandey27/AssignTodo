@@ -64,17 +64,19 @@ const TodoList = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl mb-4">Your Todo List</h2>
+    <div className="container mx-auto p-4 max-w-lg">
+      <h2 className="text-2xl mb-4 text-center">Your Todo List</h2>
       <AddTodo addTodo={addTodo} />
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo._id}
-          todo={todo}
-          deleteTodo={deleteTodo}
-          toggleCompletion={toggleCompletion}
-        />
-      ))}
+      <div className="mt-4 space-y-4">
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo._id}
+            todo={todo}
+            deleteTodo={deleteTodo}
+            toggleCompletion={toggleCompletion}
+          />
+        ))}
+      </div>
     </div>
   );
 };
