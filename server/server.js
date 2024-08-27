@@ -19,9 +19,4 @@ app.use('/api/todos', todoRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-    console.log(req);
-    return res.status(234).send("data received");
-  }); 
-
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
