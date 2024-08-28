@@ -3,7 +3,7 @@
     "name" : "Book-Store",
     "builds": [
         {
-            "src" : "*.js" ,
+            "src" : "*./server.js" ,
             "use" : "@vercel/node"
         }
     ],

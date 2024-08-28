@@ -1,15 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "",
   "type": "module",
+  "main": "server.js",
   "scripts": {
-  "start": "node server.js",
-  "server": "nodemon server.js"
-},
+    "start": "nodemon server"
+  },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
