@@ -10,7 +10,7 @@ const TodoList = () => {
     const fetchTodos = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/todos', {
+        const response = await axios.get('https://assign-todo-six.vercel.app/api/todos', {
           headers: { 'x-auth-token': token },
         });
         setTodos(response.data);
@@ -25,7 +25,7 @@ const TodoList = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5000/api/todos',
+        'https://assign-todo-six.vercel.app/api/todos',
         { text },
         { headers: { 'x-auth-token': token } }
       );
@@ -38,7 +38,7 @@ const TodoList = () => {
   const deleteTodo = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/todos/${id}`, {
+      await axios.delete(`https://assign-todo-six.vercel.app/api/todos/${id}`, {
         headers: { 'x-auth-token': token },
       });
       setTodos(todos.filter((todo) => todo._id !== id));
@@ -51,7 +51,7 @@ const TodoList = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        `http://localhost:5000/api/todos/${id}`,
+        `https://assign-todo-six.vercel.app/api/todos/${id}`,
         { completed },
         { headers: { 'x-auth-token': token } }
       );

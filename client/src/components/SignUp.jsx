@@ -23,7 +23,7 @@ const SignUp = () => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/auth/register', {
+      await axios.post('https://assign-todo-six.vercel.app/api/auth/register', {
         username,
         email,
         password,
