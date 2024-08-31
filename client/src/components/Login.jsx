@@ -6,10 +6,12 @@ const Login = ({ setToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post('https://assign-todo-six.vercel.app/api/auth/login', {
         email,
@@ -18,12 +20,12 @@ const Login = ({ setToken }) => {
 
       setToken(response.data.token);
       localStorage.setItem('token', response.data.token);
-
       navigate('/home');
     } catch (error) {
-      // Display the specific error message returned by the backend
       setError(error.response?.data?.msg || 'Login failed');
       console.error('Error:', error.response?.data?.msg || error.message);
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -49,8 +51,9 @@ const Login = ({ setToken }) => {
         <button
           type="submit"
           className="w-full px-4 py-2 bg-blue-500 text-white rounded"
+          disabled={loading}
         >
-          Login
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
     </div>
@@ -58,4 +61,3 @@ const Login = ({ setToken }) => {
 };
 
 export default Login;
-
