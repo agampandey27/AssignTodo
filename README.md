@@ -44,4 +44,4 @@ The frontend of the application uses:
 To clone the repository, use the following command:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/agampandey27/AssignTodo
